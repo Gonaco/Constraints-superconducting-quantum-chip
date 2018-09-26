@@ -507,15 +507,15 @@ Based on the unit cell in Figure \ref{cell} and assuming the frequency scheme of
 \begin{tabular}{|c|c|c|}
 \hline
 CZ gate    & NOT Possible gates in parallel                  & NOT Possible single-qubit gates   \\ \hline
-D1-X1      & D2-X1, D3-X1, D4-X1, D2-Z1                      &  \\ \hline
-D2-X1      & D1-X1, D3-X1, D4-X1, D2-Z1                      &  \\ \hline
-D3-X1      & D1-X1, D2-X1, D4-X1, D3-Z2, D4-Z1, D4-Z2, D4-X2 &                       \\ \hline
-D3-Z2      & D3-X1, D4-X1, D4-X2, D4-Z1, D4-Z2               &         \\ \hline
-D4-X1      & D1-X1, D2-X1, D3-X1, D4-Z1, D4-Z2, D4-X2, D3-Z2 &                       \\ \hline
-D2-Z1             & D2-X1, D4-Z1, D1-X1                      & \\ \hline
-D4-Z2      & D3-X1, D3-Z2, D4-X1, D4-X2, D4-Z1               &          \\ \hline
-D4-Z1      & D3-X1, D3-Z2, D4-X1, D4-X2, D4-Z2, D2-Z1        &                 \\ \hline
-D4-X2      & D3-X1, D3-Z2, D4-X1, D4-Z1, D4-Z2               &         \\ \hline
+D1-X1      & D2-X1, D3-X1, D4-X1, D2-Z1                      &  X2, D1, X1\\ \hline
+D2-X1      & D1-X1, D3-X1, D4-X1, D2-Z1                      &  X2, D2, X1 \\ \hline
+D3-X1      & D1-X1, D2-X1, D4-X1, D3-Z2, D4-Z1, D4-Z2, D4-X2 &  Z2, D3, X1                     \\ \hline
+D3-Z2      & D3-X1, D4-X1, D4-X2, D4-Z1, D4-Z2               &  D4, D3, Z2       \\ \hline
+D4-X1      & D1-X1, D2-X1, D3-X1, D4-Z1, D4-Z2, D4-X2, D3-Z2 &  D3, D4, X1                     \\ \hline
+D2-Z1             & D2-X1, D4-Z1, D1-X1                      &  D3, D2, Z1 \\ \hline
+D4-Z2      & D3-X1, D3-Z2, D4-X1, D4-X2, D4-Z1               &  D4, D4, Z2        \\ \hline
+D4-Z1      & D3-X1, D3-Z2, D4-X1, D4-X2, D4-Z2, D2-Z1        &  D3, D4, Z1               \\ \hline
+D4-X2      & D3-X1, D3-Z2, D4-X1, D4-Z1, D4-Z2               &  D3, D4, X2       \\ \hline
 
 \end{tabular}}
 \end{table}
