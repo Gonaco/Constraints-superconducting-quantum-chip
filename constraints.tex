@@ -708,15 +708,12 @@ measurements of any two qubits coupled to different feedlines.
 In SC-17, it is possible to do
 
 \begin{minted}[frame=lines,fontsize=\scriptsize,linenos,breaklines,breakanywhere]{c}
-SMIS S0, {0, 2, 3, 6, 9, 12}
-MEASZ S0
+  
+measure q[0] | measure q[2] | measure q[3] | measure q[6] | measure q[9] | measure q[12]
+measure q[1] | measure q[13]
+qwait 30
+measure q[3] | measure q[8]
 
-MEASZ 1 | MEASZ 13
-MEASZ 3 | MEASZ 8
-
-
-SMIS S1, {13, 16}
-MEASZ S1
 \end{minted}
 
 notice that the measurement of qubits 13 and 16 is executed at the same cycle.     
@@ -725,13 +722,16 @@ notice that the measurement of qubits 13 and 16 is executed at the same cycle.
 \hfill %\hspace{1cm}
 \begin{minipage}[t]{.45\textwidth}
 
-On the other hand is not possible to do
+On the other hand it is not possible to do
 
 \begin{minted}[frame=lines,fontsize=\scriptsize,linenos,breaklines,breakanywhere]{c}
-MEASZ 2 | MEASZ 6
+  
+  measure q[2]
+  measure q[6]
+  
 \end{minted}
 
-because they are parallel operations but they are not executed on the same cycle.
+Note that, in order to measure qubit 2 and 6 in different times, the latter instruction should wait 30 cycles for the first one to finish. In other words, this code is missing a \verb{qwait 30} instruction.
 
 \end{minipage}
 
