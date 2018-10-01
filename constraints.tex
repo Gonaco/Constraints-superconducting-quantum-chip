@@ -70,9 +70,6 @@ Figure \ref{fig:sc_17} shows a schematic of the layout for the Surface-17 chip \
 
 Figures \ref{fig:simple_sc_17} and \ref{fig:org08ec89a}  show a schematic of the topology for both quantum chips, Surface-17 and Surface-7 respectively. Circles represent the \textbf{qubits}  and the \textbf{edges} represent the `connections' between them or possible interactions. Numbers  are the physical addresses of the qubit. As we just mentioned the different colors represent the frequency for single-qubit microwave control: red for $f_1$, blue and green for $f_2$ and pink for $f_3$. \textbf{Note that in this particular case only 3 frequencies are used but 4 different frequencies are also possible}.%The numbers along the direct edges are addresses of the allowed qubit pairs.
 
-\noteGG{How is the generalized relationship between the qubit frequencies? For example, will it be true that $f_j>f_k$ iff $j<k$? Does a two qubit gate involve only qubit at frequency $f_j$ and $f_{j\pm 1}$?}
-\textcolor{blue}{Carmina: I do not know what is the frequency for f1,f2,f3. The important point here is that a qubit at frequency $f_j$ can only interact (perform a two qubit gate) with a qubit that is at frequency $f_{j-1}$ or $f_{j+1}$ and on top of that there is a resonator connecting them (a direct connection between them).}
-
 
 \begin{figure}[h!]
 \centerline{\subfigure[]{\includegraphics[width=2.5in]{cell}
@@ -361,8 +358,7 @@ In order to perform single-qubit gates, electromagnetic microwaves are sent. As 
 
 
 \caption{\label{T1}
-Frequency groups for Surface-7 when using 3 different frequencies.
-\noteGG{Should QWG 1 and 2 be exchanged?}}\textcolor{blue}{Carmina: I guess that this comment is because QW0 is controlling 0,1 and the QWG 1 is for qubits 4,6 and not for 2,3,4. We just gave a name to the QWG, they do not necessarily follow any specific order. }
+Frequency groups for Surface-7 when using 3 different frequencies. }
 \centering
 
 \begin{tabular}{ll}
@@ -477,10 +473,6 @@ But not
 
 Obviously, it is not possible to perform more than one single-qubit gate on the same qubit at the same time (gate dependency).
 
-\noteGG{Based on SC-17, when I do a X pulse on 1 and 2, do I need to detune 3 away from $f_1$ (for example to $f_{1}^{int}$)?}\textcolor{blue}{Carmina: the detunning is only necessary when performing a two-qubit gate, not for single-qubit gates. If you want to apply a X pulse on 1 and 2 but not on 3, you just need to send that pulse to qubits 1 and 2 but not 3. There is individual access for the qubits for performing single qubit gates.}
-
-\noteGG{Based on SC-17, can one do a two-qubit gate between 1-5 and a one-qubit gate on 6? What if it was on 4?}\textcolor{blue}{Carmina: For performing a two qubit gate between q1 and q5 you have to bring q1 to $f^{int}_{1}$ and q5 to $f_2$. q6 has not a direct connection with q5 or q1 so in principle you can perform in parallel a CZ(1,5) and a single qubit gate on q6. However, q4 has a direct connection with q1 and then you have to detune it to $f^{park}_2$ because if not it will also interact with q1. So in this case, it not possible to perform CZ(1,5) and a single-qubit gate on q4 in parallel.  }
-
 \subsection{Two-qubit gates}
 
 In order to perform a two quibt gate in transmons, interacting qubits need to be brought to a specific close frequencies \cite{versluis2016scalable}. More specifically, $CZ_f$ gates are performed between qubits at $f^{int}_1$ and $f_2$ or at $f^{int}_2$ and $f_3$ as shown in Figure \ref{detuning}. This limits the amount of two-qubit gates that can be performed in parallel (hardware constraint). In addition, note that, different frequency arrangements can be used as shown in Figure \ref{sequence}. 
@@ -538,8 +530,6 @@ This can be extended to SC-17 based on the same frequency scheme and the simplif
 Example of a two qubit gate and the consequences of it in SC-17 and SC-7}
 \end{figure}
 
-\noteD{This picture is wrong. And the SC-17 table as well. The problem of the single qubit gates would depend directly on the number of QWG's in the chips and which qubits are connected to them}
-
 \begin{table}[h!]
 \caption{Allowed and not allowed parallel CZ gates in SC-17.}
 \label{parallelCZSC17}
@@ -584,19 +574,19 @@ Q9-Q11 & Q5-Q8,Q8-Q10,Q6-Q8,Q8-Q11,Q11-Q14,Q6-Q9,Q11-Q15,Q9-Q12 & Q9,Q11,Q8\\
 \hline
 Q9-Q12 & Q6-Q8,Q8-Q11,Q6-Q9,Q9-Q11,Q12-Q15 & Q9,Q12,Q8\\
 \hline
-Q10-Q13 & Q7-Q10,Q13-Q16,Q8-Q10,Q10-Q14,Q14-Q10,Q11-Q14 & Q10,Q13,Q16,Q11\\
+Q10-Q13 & Q7-Q10,Q13-Q16,Q8-Q10,Q10-Q14,Q14-Q10,Q11-Q14 & Q10,Q13,Q4,Q6,Q12\\
 \hline
-Q10-Q14 & Q7-Q10,Q10-Q13,Q13-Q16,Q8-Q10,Q14-Q16,Q11-Q14,Q11-Q15 & Q10,Q14,Q16,Q11\\
+Q10-Q14 & Q7-Q10,Q10-Q13,Q13-Q16,Q8-Q10,Q14-Q16,Q11-Q14,Q11-Q15 & Q10,Q14,Q4,Q6,Q12\\
 \hline
-Q11-Q14 & Q10-Q13,Q13-Q16,Q10-Q14,Q14-Q16,Q8-Q11,Q9-Q11,Q11-Q15,Q12-Q15 & Q11,Q14,Q10,Q16,Q12\\
+Q11-Q14 & Q10-Q13,Q13-Q16,Q10-Q14,Q14-Q16,Q8-Q11,Q9-Q11,Q11-Q15,Q12-Q15 & Q11,Q14,Q5,Q0,Q16\\
 \hline
-Q11-Q15 & Q10-Q14,Q14-Q16,Q8-Q11,Q11-Q14,Q9-Q11,Q12-Q15 & Q11,Q15,Q10,Q16\\
+Q11-Q15 & Q10-Q14,Q14-Q16,Q8-Q11,Q11-Q14,Q9-Q11,Q12-Q15 & Q11,Q15,Q5,Q0,Q16\\
 \hline
-Q12-Q15 & Q11-Q14,Q11-Q15,Q9-Q12 & Q12,Q15,Q11\\
+Q12-Q15 & Q11-Q14,Q11-Q15,Q9-Q12 & Q12,Q15,Q4,Q6,Q10\\
 \hline
-Q13-Q16 & Q10-Q13,Q10-Q14,Q14-Q16,Q11-Q14  & Q13,Q16,Q10,Q11\\
+Q13-Q16 & Q10-Q13,Q10-Q14,Q14-Q16,Q11-Q14  & Q13,Q16,Q0,Q11,Q5\\
 \hline
-Q14-Q16 & Q10-Q13,Q13-Q16,Q10-Q14,Q11-Q14,Q11-Q15 & Q14,Q16,Q10,Q11\\
+Q14-Q16 & Q10-Q13,Q13-Q16,Q10-Q14,Q11-Q14,Q11-Q15 & Q14,Q16,Q0,Q11,Q5\\
 \hline
 \end{tabular}
 }
