@@ -517,19 +517,6 @@ This can be extended to SC-17 based on the same frequency scheme and the simplif
 
 \textcolor{red}{We also need to derive what operations can be performed in parallel for SC-7.}
 
-\subsection{Summary for single-qubit and two-qubit gates}
-
-\textbf{Single-qubit gates:} For performing a single-qubit gate on a qubit, one needs to send the required electromagnetic microwave to it.  \textbf{The same} single-qubit gate can be performed in parallel in all or some of the qubits connected to the same QWG. However, it is not possible to perform in parallel a different single qubit-gate in qubits connected to the same QWG.
-
-\textbf{Two-qubit gates:} in order to perform a two-qubit gate in transmons, interacting qubits need to be brought to a specific close frequencies. In addition, the qubits that share a connection with the qubits performing a 2-qubit gate need to be detunned away. For instance, in SC-17, when performing a CZ(11,14), q16 and q10 need to be detunned to $f_{2}^{park}$. Note that it is not possible to perform a single-qubit gate (in parallel with the two-qubit gate) on the qubits that have been detunned to  $f_{1}^{int}$,  $f_{2}^{park}$, $f_{2}^{int}$ or $f_{3}^{park}$. 
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\textwidth]{two_qubit_constraint_sc17.png}
-\caption{\label{two_qubit_gate_ex}
-Example of a two qubit gate and the consequences of it in SC-17 and SC-7}
-\end{figure}
-
 \begin{table}[h!]
 \caption{Allowed and not allowed parallel CZ gates in SC-17.}
 \label{parallelCZSC17}
@@ -591,6 +578,23 @@ Q14-Q16 & Q10-Q13,Q13-Q16,Q10-Q14,Q11-Q14,Q11-Q15 & Q14,Q16,Q0,Q11,Q5\\
 \end{tabular}
 }
 \end{table}
+
+\subsection{Summary for single-qubit and two-qubit gates}
+
+\textbf{Single-qubit gates:} for performing a single-qubit gate on a qubit, one needs to send the required electromagnetic microwave to it.  \textbf{The same} single-qubit gate can be performed in parallel in all or some of the qubits connected to the same QWG. However, it is not possible to perform in parallel a different single qubit-gate in qubits connected to the same QWG.
+
+\textbf{Two-qubit gates:} in order to perform a two-qubit gate in transmons, interacting qubits need to be brought to a specific close frequencies. In addition, the qubits that share a connection with the qubits performing a 2-qubit gate need to be detunned away. For instance, in SC-17, when performing a CZ(11,14), q16 and q10 need to be detunned to $f_{2}^{park}$. Note that it is not possible to perform a single-qubit gate (in parallel with the two-qubit gate) on the qubits that have been detunned to  $f_{1}^{int}$,  $f_{2}^{park}$, $f_{2}^{int}$ or $f_{3}^{park}$. 
+
+As an example, in \ref{fig:two_qubit_gate_ex}
+
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\textwidth]{two_qubit_constraint_sc17.png}
+\caption{\label{fig:two_qubit_gate_ex}
+Example of a two qubit gate and the consequences of it in SC-17 and SC-7}
+\end{figure}
 
 %More specifically, the two next connection in the same axis will be forbidden for two-qubit interactions. The first connection as a consequence of the qubit exclusivity constraint because one of the qubits is being used.
 %And the second one is a consequence of this constraint.
