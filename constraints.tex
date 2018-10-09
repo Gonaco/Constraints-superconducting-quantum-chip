@@ -251,6 +251,20 @@ Mz         &  600 ns          \\ \hline
 \end{tabular}
 \end{table}
 
+\begin{table}[bth!]
+\centering
+\caption{The gate time for the universal set allowed in the devices \{R_x,R_y,CZ,Mz\}.} 
+\label{sc_set_gatetime}
+\begin{tabular}{|c|c|}
+\hline
+Gate type & Gate time \\ \hline
+X         & 20 ns     \\ 
+Y         & 20 ns     \\ 
+CZ         & 40 ns     \\ 
+Mz         &  600 ns          \\ \hline
+\end{tabular}
+\end{table}
+
 %\newpage
 In the next sections, the different constraints of the superconducting quantum chip will be explained in detail. Note that we will distinguish two kind of constraints: the ones coming from the quantum chip- e.g. nearest-neighbour interactions- that we call \textbf{hardware constraints} and the ones from the electronics control setup - e.g. qubits operated by the same AWG- called \textbf{electronics constraints}. In addition, we will also make a distinction between \textbf{hard} and \textbf{soft} constraints. \textbf{Hard} constraints are those that will remain there and will hardly change and \textbf{soft} constraints are those that will be evolving, changing and even disappearing at some point. 
 
@@ -364,7 +378,7 @@ Frequency groups for Surface-7 when using 3 different frequencies. }
 \begin{tabular}{ll}
  & \\
 \hline
-Frequency Group & Qubits\\
+QWG & Qubits\\
 \hline
 \cellcolor{red!25} QWG 0 & \cellcolor{red!25} 0, 1\\
 \cellcolor{Aquamarine!25} QWG 1 & \cellcolor{Aquamarine!25} 2, 3, 4\\
@@ -385,7 +399,7 @@ Frequency groups for Surface-7 when using 4 different frequencies.}
 \begin{tabular}{ll}
  & \\
 \hline
-Frequency Group & Qubits\\
+QWG & Qubits\\
 \hline
 \cellcolor{red!25} QWG 0 & \cellcolor{red!25} 0, 1\\
 \cellcolor{pink!25} QWG 1 & \cellcolor{pink!25} 5, 6\\
@@ -410,7 +424,7 @@ Frequency groups for Surface-17 when using 3 different frequencies.}
 \begin{tabular}{ll}
  & \\
 \hline
-Frequency Group & Qubits\\
+QWG & Qubits\\
 \hline
 \cellcolor{red!25} QWG 0 & \cellcolor{red!25} 1, 2, 3, 13, 14, 15\\
 \cellcolor{pink!25} QWG 1 & \cellcolor{pink!25} 7, 8, 9\\
@@ -430,7 +444,7 @@ Frequency groups for Surface-17 when using 4 different frequencies.}
 \begin{tabular}{ll}
  & \\
 \hline
-Frequency Group & Qubits\\
+QWG & Qubits\\
 \hline
 \cellcolor{red!25} QWG 0 & \cellcolor{red!25} 1, 2, 3, 13, 14, 15\\
 \cellcolor{pink!25} QWG 1 & \cellcolor{pink!25} 7, 8, 9\\
