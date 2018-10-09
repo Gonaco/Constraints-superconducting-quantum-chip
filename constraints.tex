@@ -236,17 +236,17 @@ These gates need to be further decomposed into the elementary gates as shown in 
 \centering
 \caption{The gate time for the universal set \{H,S,T,CNOT\}.} 
 \label{uni_set_gatetime}
-\begin{tabular}{c|c}
+\begin{tabular}{|c|c|}
 \hline
 Gate type & Gate time \\ \hline
-X         & 20 ns     \\ \hline
-Y         & 20 ns     \\ \hline
-Z         & 40 ns     \\ \hline
-H         & 40 ns     \\ \hline
-S/Sdag    & 60 ns          \\ \hline
-T/Tdag    & 60 ns          \\ \hline
-CNOT      & 80 ns     \\ \hline
-SWAP      & 200 ns    \\ \hline
+X         & 20 ns     \\ 
+Y         & 20 ns     \\ 
+Z         & 40 ns     \\ 
+H         & 40 ns     \\ 
+S/Sdag    & 60 ns          \\ 
+T/Tdag    & 60 ns          \\ 
+CNOT      & 80 ns     \\ 
+SWAP      & 200 ns    \\ 
 Mz         &  600 ns          \\ \hline
 \end{tabular}
 \end{table}
@@ -583,9 +583,9 @@ Q14-Q16 & Q10-Q13,Q13-Q16,Q10-Q14,Q11-Q14,Q11-Q15 & Q14,Q16,Q0,Q11,Q5\\
 
 \textbf{Single-qubit gates:} for performing a single-qubit gate on a qubit, one needs to send the required electromagnetic microwave to it.  \textbf{The same} single-qubit gate can be performed in parallel in all or some of the qubits connected to the same QWG. However, it is not possible to perform in parallel a different single qubit-gate in qubits connected to the same QWG.
 
-\textbf{Two-qubit gates:} in order to perform a two-qubit gate in transmons, interacting qubits need to be brought to a specific close frequencies. In addition, the qubits that share a connection with the qubits performing a 2-qubit gate need to be detunned away. For instance, in SC-17, when performing a CZ(11,14), q16 and q10 need to be detunned to $f_{2}^{park}$. Note that it is not possible to perform a single-qubit gate (in parallel with the two-qubit gate) on the qubits that have been detunned to  $f_{1}^{int}$,  $f_{2}^{park}$, $f_{2}^{int}$ or $f_{3}^{park}$. 
+\textbf{Two-qubit gates:} in order to perform a two-qubit gate in transmons, interacting qubits need to be brought to a specific close frequencies. In addition, the qubits that share a connection with the qubits performing a 2-qubit gate need to be detunned away. %% For instance, in SC-17, when performing a CZ(11,14), q16 and q10 need to be detunned to $f_{2}^{park}$. Note that it is not possible to perform a single-qubit gate (in parallel with the two-qubit gate) on the qubits that have been detunned to  $f_{1}^{int}$,  $f_{2}^{park}$, $f_{2}^{int}$ or $f_{3}^{park}$.
 
-As an example, in \ref{fig:two_qubit_gate_ex}
+As an example, in fig. \ref{fig:two_qubit_gate_ex}, a CZ gate is applied between qubits 11 and 14 (\texttt{cz (q[11], q[14])}). Thus, both qubits need to be tuned to closer frequencies -- $f_1^{int}$ and $f_2$ in this case --. And, as explained before, in order to not create intereferences between qubits some of them should be detunned away. Specifically, qubits 0, 5 and 16 need to be detunned to $f_2^{park}$ -- the blue ones -- as well as qubit 10.
 
 
 
@@ -617,7 +617,7 @@ Example of a two qubit gate and the consequences of it in SC-17 and SC-7}
 % \node [circle,fill=black,minimum size=10pt] at (20,0) {};
 % \node [circle,fill=black,minimum size=10pt] at (5,5) {};
 % \node [circle,fill=black,minimum size=10pt] at (5,-5) {};
-% \node [circle,fill=black,minimum size=10pt] at (15,5) {};
+ % \node [circle,fill=black,minimum size=10pt] at (15,5) {};
 % \node [circle,fill=black,minimum size=10pt] at (25,5) {};
 % \node [circle,fill=black,minimum size=10pt] at (15,-5) {};
 % \node [circle,fill=black,minimum size=10pt] at (25,-5) {};
