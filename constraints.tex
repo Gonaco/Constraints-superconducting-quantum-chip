@@ -247,21 +247,21 @@ S/Sdag    & 60 ns          \\
 T/Tdag    & 60 ns          \\ 
 CNOT      & 80 ns     \\ 
 SWAP      & 200 ns    \\ 
-Mz         &  600 ns          \\ \hline
+$M_{Z}$         &  600 ns          \\ \hline
 \end{tabular}
 \end{table}
 
 \begin{table}[bth!]
 \centering
-\caption{The gate time for the universal set allowed in the devices \{R_x,R_y,CZ,Mz\}.} 
+\caption{The gate time for the universal set allowed in the devices $\{R_{X},R_{Y},CZ,M_{Z}\}$}.
 \label{sc_set_gatetime}
 \begin{tabular}{c|c}
 \hline
 Gate type & Gate time \\ \hline
-X         & 20 ns     \\ 
-Y         & 20 ns     \\ 
-CZ         & 40 ns     \\ 
-Mz         &  600 ns          \\ \hline
+$R_{X}(\pm 45, \pm90)$         & 20 ns     \\ 
+$R_{Y}(\pm 45, \pm90)$       & 20 ns     \\ 
+CZ        & 40 ns     \\ 
+$M_{Z}$         &  600 ns          \\ \hline
 \end{tabular}
 \end{table}
 
@@ -759,6 +759,19 @@ Note that, in order to measure qubit 2 and 6 in different times, the latter inst
 \bibliography{thesis_plan}
 \bibliographystyle{plain}
 
+\section{Mapping models}
+
+\subsection{TU Delft Mapping model: initial placement, routing and scheduling}
+
+\textcolor{red}{Carmina: please add reference to the paper, if any}
+
+\subsection{Gian Giacomo Mapping model}
+
+Initial placement may be: trivial, provided in input, random, or based on the first gate per logical qubit. Routing is base on improving the two-qubit gate pattern, not yet described in a paper or bench marked. Some concepts and techniques are described in \cite{Guerreschi2018}. I have not implemented any reduction of the gates (for example the cancellation of consecutive, opposite rotations or consecutive CZ), but it can be added if present in the other compilers.
+
+\subsection{JK Linz University Mapping model}
+\textcolor{red}{Please add reference to the paper, if any}
+\newpage
 
 \section{Minutes telco 11/07/2018}
 
@@ -820,5 +833,56 @@ Task \# & Task & Responsible  & Status\footnote{\scriptsize Not started/In progr
 \end{minipage}
 \end{table}    
     
+\newpage
+
+\section{Minutes telco 10/10/2018}
+
+Hans van Sommeren, Lingling Lao, Daniel Moreno, Carmina G. Almudever, Robert Wille, Alwin Zulehner, Gian Giacomo Guerreshi.
+
+\textbf{We agreed on the following:}
+
+\begin{itemize}
+    \item The input of the mapping models is a c-QASM file in which gates have been already decomposed to the elementary gates supported by the device. The benchmarks are in Github (scheduled and non-scheduled). Daniel needs to check the syntax of c-QASM 2.0.
+    
+    \item The mapping models should: 1) use as an input the c-QASM file 2) insert decomposed SWAPs (CPHASE+Y rotations, see Fig. 4); 3) use the json file where constraints are described; 4) output the c-QASM file after mapping, number of SWAPs, circuit depth, and qubits used.
+    
+    \item We all need to describe the basic idea of our mapping models in this document. We should include the following information: 1) what is the parameter that mapping optimizes (circuit depth, number of SWAPS); 2) where qubits are moved (control to target, intermediate position)?; 3) Are qubits moved back to their original position?; 4) How many paths are calculated for each pair of qubits?
+    
+    
+    \item We should agree on what initial placement we will use. Our routing model (TUD) is independent of the initial placement. In other words, we place the qubits 'randomnly' in the chip and that is the initial placement that the routing algorithm takes an starting point or we can place the qubits in an optimal way based in an ILP model that Lingling developed and then we do the routing. What about your mappers? The informattion about the initial placement used should be included in the c-QASM file.
+    
+    \end{itemize}
+    
+    \textbf{Comments}
+\begin{itemize}
+
+\item Robert mentioned that We should have plan and time-line and define intermediate goals.
+
+\item Gian Giacomo suggests that it would be good to perform a comparative study to see what applications are more convenient for SC-7 and SC-17. This chips are meant for surface code. Are they also good for quantum algorithms like QFT? 
+
+\item Robert said that We should reflect on what papers we want to write. We can envision a paper in which we compare the performance of all three mappers.
+
+\item Robert also mentioned that it would be good to have papers describing intermediate results.
+
+\item Gian Giacomo pointed out that he did not publish his mapping model yet and that he also has some IP constraints as he is working on a company,
+
+\end{itemize}
+
+
+\textbf{Action points:}
+
+\begin{itemize}
+
+    \item Daniel will check the c-QASM 2.0 syntax. He will send an email to let us know when the benchmarks are ready to be used.
+    
+    \item Each partner should briefly describe the characteristics of the mapping model including the information mentioned above. Once the mapping models have been described, we will propose some initial placements to use.
+    
+    \item TUD will add the figure with the bidirectional links and edge labels to this document.
+    
+    \item We should have a plan (time-line) with intermediate goals. Carmina will write a plan and share with the others.
+
+    \end{itemize}
+
+
 
 \end{document}
