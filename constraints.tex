@@ -767,7 +767,7 @@ Note that, in order to measure qubit 2 and 6 in different times, the latter inst
 
 \subsection{Gian Giacomo Mapping model}
 
-Initial placement may be: trivial, provided in input, random, or based on the first gate per logical qubit. Routing is base on improving the two-qubit gate pattern, not yet described in a paper or bench marked. Some concepts and techniques are described in \cite{Guerreschi2018}. I have not implemented any reduction of the gates (for example the cancellation of consecutive, opposite rotations or consecutive CZ), but it can be added if present in the other compilers.
+Initial placement may be: trivial, provided in input, random, or based on the first gate per logical qubit. Routing is base on improving the two-qubit gate pattern, not yet described in a paper or bench marked. Some concepts and techniques are described in \cite{Guerreschi2018}. It is stochastic and one can post-select based on the circuit depth or number of SWAPs. I have not implemented any reduction of the gates (for example the cancellation of consecutive, opposite rotations or consecutive CZ), but it can be added if present in the other compilers.
 
 \subsection{JK Linz University Mapping model}
 \textcolor{red}{Please add reference to the paper, if any}
