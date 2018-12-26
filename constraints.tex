@@ -527,9 +527,9 @@ D4-X2      & D3-X1, D3-Z2, D4-X1, D4-Z1, D4-Z2               &  D3, D4, X2      
 \end{table}
 
 
-This can be extended to SC-17 based on the same frequency scheme and the simplified layout shown in Figure \ref{fig:simple_sc_17}. \textcolor{red}{We need to derive what operations can be performed in parallel and fill Table \ref{parallelCZSC17} in.}
+This can be extended to SC-17 based on the same frequency scheme and the simplified layout shown in Figure \ref{fig:simple_sc_17}.% \textcolor{red}{We need to derive what operations can be performed in parallel and fill Table \ref{parallelCZSC17} in.}
 
-\textcolor{red}{We also need to derive what operations can be performed in parallel for SC-7.}
+%\textcolor{red}{We also need to derive what operations can be performed in parallel for SC-7.}
 
 \begin{table}[h!]
 \caption{Allowed and not allowed parallel CZ gates in SC-17.}
@@ -757,21 +757,49 @@ Note that, in order to measure qubit 2 and 6 in different times, the latter inst
 
 
 
-\bibliography{thesis_plan}
-\bibliographystyle{plain}
+
 
 \section{Mapping models}
 
-\subsection{TU Delft Mapping model: initial placement, routing and scheduling}
+\textcolor{red}{Please, include the following information in the description of your mapping model: 1) what is the parameter that mapping optimizes (circuit depth, number of SWAPS); 2) where qubits are moved (control to target, intermediate position)?; 3) Are qubits moved back to their original position?; 4) How many paths are calculated for each pair of qubits?}
 
-\textcolor{red}{Carmina: please add reference to the paper, if any}
+\subsection{TU Delft Mapping model: initial placement, routing and scheduling}
+\begin{itemize}
+    \item \textbf{Pre-scheduling:} In our mapping model, the given circuit is first scheduled in an ALAP manner without taking into account the hardware constraints, just gate dependencies.
+    \item \textbf{Initial placement:} Then, we find an initial placement for this circuit, which is either a trivial placement which place qubits in order (e.g., qubit 1 in location 1) or a placement based on the minimum Manhattan distance of all interacted qubits (all CNOTs). Model can be found in \cite{lao2018mapping}. 
+    \item \textbf{Routing:} Afterwards, the router starts to check whether each CNOT gate is performed on neighbouring qubits.
+    If not, then a set of SWAP gates (implemented by the primitive operations in Figure~\ref{fig:decompositions}) along a path are inserted to move these two interacted qubits to be neighbours (they will not be moved back to original locations any more).
+    These SWAP gates are interleaved with previous operations in the circuit. This interleaving can be done considering only gate dependencies or taking into account gates dependencies and hardware constraints.  
+    The selection of a  set of SWAPs or path is based on the circuit depth, that is, the router finds all the shortest paths between the two qubits that need to interact, considers all the possible movements along each path (the control qubit moves to the target qubit, or target to control, or they meet in the middle), and chooses the set of SWAPs which has minimum overhead in circuit latency (depth). 
+    
+    \item \textbf{Re-scheduling:} 
+    After the routing, a RC-scheduler (global scheduler) will reschedule the routed circuit based on all the hardware constraints in an ALAP or an ASAP manner.
+    
+    % Optimizations are made before and after the mapping such as cancelling gates out.
+
+\end{itemize}
+
+%\textcolor{red}{Carmina: please add reference to the paper, if any}
 
 \subsection{Gian Giacomo Mapping model}
 
 Initial placement may be: trivial, provided in input, random, or based on the first gate per logical qubit. Routing is base on improving the two-qubit gate pattern, not yet described in a paper or bench marked. Some concepts and techniques are described in \cite{Guerreschi2018}. It is stochastic and one can post-select based on the circuit depth or number of SWAPs. I have not implemented any reduction of the gates (for example the cancellation of consecutive, opposite rotations or consecutive CZ), but it can be added if present in the other compilers.
 
-\subsection{JK Linz University Mapping model}
-\textcolor{red}{Please add reference to the paper, if any}
+\subsection{JKU Linz Mapping model}
+The approach is focused on producing as few gates as possible while satisfying the nearest neighbor constraints.
+After parsing the input file, the circuit is grouped into \emph{layers}, each describing a block of gates that operate on distinct qubits. 
+The initial placement for the mapping is then simply the placement of qubits in the input file, which is adjusted for \(\mathit{CX}\) gates on non-neighboring qubits.
+To ensure the correct placement in the successive layers in regards to the nearest neighbor constraints, an A*-search (cf.~\cite{zulehner17:effic_method_mappin_quant_circuit}) is utilized to determine the shortest path and the minimum amount of \(\mathit{SWAP}\) gates required, irrespective of whether control, target, or both have to be moved. In the worst-case all possible paths have to be calculated. These \(\mathit{SWAPs}\) are not reversed afterwards. This effectively yields a list of all gates, on which some small optimizations, e.g. combining successive \(Y\) rotations, are performed.
+During the mapping process, the individual gates are placed on the circuit as soon as possible, considering possible parallel gates and their respective timings.
+At the moment no post-mapping optimizations are performed.
+
+Depending on the upcoming evaluation, we will shift our focus accordingly.
+(The approach has not yet been published.)
+
+\bibliography{thesis_plan}
+\bibliographystyle{plain}
+
+
 \newpage
 
 \section{Minutes telco 11/07/2018}
